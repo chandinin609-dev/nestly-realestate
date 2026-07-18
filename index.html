@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nestly | Premium Real Estate & Luxury Living</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom scrollbar for a cleaner premium look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        #page-sell,
+#page-agents {
+    background: linear-gradient(to bottom, #dbeafe, #bfdbfe);
+    min-height: 100vh;
+}
+    </style>
+</head>
+<body class="bg-slate-50/50 text-slate-900 font-sans antialiased">
+
+    <!-- PREMIUM NAVIGATION BAR -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('rent')">
+                <div class="w-11 h-11 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center text-white font-extrabold text-2xl shadow-lg shadow-blue-500/20">N</div>
+                <div>
+                    <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Nestly</span>
+                    <span class="block text-[10px] text-blue-600 font-bold uppercase tracking-widest -mt-1">Luxury Living</span>
+                </div>
+            </div>
+            
+            <!-- Enterprise-Level Navigation -->
+            <div class="hidden md:flex items-center space-x-8 font-semibold text-sm">
+                <button onclick="navigateTo('rent')" id="nav-rent" class="text-blue-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-key text-xs"></i> <span>Rentals</span>
+                </button>
+                <button onclick="navigateTo('buy')" id="nav-buy" class="text-slate-600 hover:text-slate-900 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-house-chimney text-xs"></i> <span>For Sale</span>
+                </button>
+                <button onclick="navigateTo('sell')" id="nav-sell" class="text-slate-600 hover:text-slate-900 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-tag text-xs"></i> <span>List & Sell</span>
+                </button>
+                <button onclick="navigateTo('agents')" id="nav-agents" class="text-slate-600 hover:text-slate-900 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-user-tie text-xs"></i> <span>Find Agent</span>
+                </button>
+            </div>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleSignInModal(true)" class="text-slate-700 font-bold hover:text-slate-900 text-sm px-4 py-2 transition">Sign In</button>
+                <button onclick="toggleModal(true)" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm px-5 py-3 rounded-2xl transition-all shadow-md shadow-blue-500/10 hover:shadow-lg">
+                    Add Property
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= RENTAL PORTAL (RENT PAGE) ================= -->
+    <div id="page-rent" class="page-section">
+        <!-- Professional Hero Dashboard -->
+        <header class="relative bg-slate-950 text-white py-24 px-6 text-center overflow-hidden">
+            <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="relative max-w-4xl mx-auto space-y-6">
+                <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full text-xs font-bold border border-blue-500/20 inline-flex items-center space-x-1.5">
+                    <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+                    <span>1,240+ Premium Listings Active Today</span>
+                </span>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-none text-white">Find Your Perfect <br><span class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Luxury Rental</span></h1>
+                <p class="text-slate-300 max-w-xl mx-auto text-base font-normal">Browse fully verified premium apartments, luxury penthouses, smart buildings, and sprawling bungalows.</p>
+            </div>
+        </header>
+
+        <!-- Advanced Real Estate Filter Workspace -->
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <!-- Professional Horizontal Segment / Sub-category Filters -->
+            <div class="flex items-center space-x-3 overflow-x-auto pb-4 mb-8 border-b border-slate-100" id="rent-categories">
+                <button onclick="filterRentCategory('All')" id="btn-rent-All" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-blue-600 text-white shadow-sm">All Types</button>
+                <button onclick="filterRentCategory('Bungalow')" id="btn-rent-Bungalow" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Bungalows</button>
+                <button onclick="filterRentCategory('Villa')" id="btn-rent-Villa" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Villas</button>
+                <button onclick="filterRentCategory('Apartment')" id="btn-rent-Apartment" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Apartments</button>
+                <button onclick="filterRentCategory('Penthouse')" id="btn-rent-Penthouse" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Penthouses</button>
+            </div>
+
+            <!-- Dual Filter Module -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-white p-7 rounded-3xl border border-slate-100 shadow-sm">
+                <div class="space-y-3">
+                    <div class="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-wider">
+                        <span>Max Monthly Rent</span>
+                        <span class="text-blue-600" id="rent-price-display">₹3,00,000</span>
+                    </div>
+                    <input type="range" id="rent-price-range" min="30000" max="300000" step="10000" value="300000" oninput="filterRentPrice(this.value)" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Filter by Location</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="rent-search" oninput="filterRentSearch(this.value)" placeholder="Search city or property title..." class="w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 focus:bg-white transition-all text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Property Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10" id="rent-grid"></div>
+        </div>
+    </div>
+
+    <!-- ================= SALES PORTAL (BUY PAGE) ================= -->
+    <div id="page-buy" class="page-section hidden">
+        <!-- Sales Hero -->
+        <header class="relative bg-slate-950 text-white py-24 px-6 text-center overflow-hidden">
+            <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="relative max-w-4xl mx-auto space-y-6">
+                <span class="bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full text-xs font-bold border border-emerald-500/20 inline-flex items-center space-x-1.5">
+                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <span>Direct Ownership Assets</span>
+                </span>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-none text-white">Invest in <br><span class="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Exquisite Estates</span></h1>
+                <p class="text-slate-300 max-w-xl mx-auto text-base font-normal">A curated directory of legacy-grade villas, modern architectural masterpieces, and ultra-high-end bungalows.</p>
+            </div>
+        </header>
+
+        <!-- Advanced Sales Filter Workspace -->
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <!-- Professional Horizontal Segment / Sub-category Filters -->
+            <div class="flex items-center space-x-3 overflow-x-auto pb-4 mb-8 border-b border-slate-100" id="buy-categories">
+                <button onclick="filterBuyCategory('All')" id="btn-buy-All" class="px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-emerald-600 text-white shadow-sm">All Types</button>
+                <button onclick="filterBuyCategory('Bungalow')" id="btn-buy-Bungalow" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Bungalows</button>
+                <button onclick="filterBuyCategory('Villa')" id="btn-buy-Villa" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Villas</button>
+                <button onclick="filterBuyCategory('Apartment')" id="btn-buy-Apartment" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Apartments</button>
+                <button onclick="filterBuyCategory('Penthouse')" id="btn-buy-Penthouse" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all">Penthouses</button>
+            </div>
+
+            <!-- Dual Filter Module -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-white p-7 rounded-3xl border border-slate-100 shadow-sm">
+                <div class="space-y-3">
+                    <div class="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-wider">
+                        <span>Max Purchase Budget</span>
+                        <span class="text-emerald-600 font-extrabold" id="buy-price-display">₹15.0 Crores</span>
+                    </div>
+                    <input type="range" id="buy-price-range" min="1" max="15" step="0.5" value="15" oninput="filterBuyPrice(this.value)" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Filter by Location</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="buy-search" oninput="filterBuySearch(this.value)" placeholder="Search city or property title..." class="w-full pl-11 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-2xl focus:outline-none focus:border-emerald-500 focus:bg-white transition-all text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Property Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10" id="buy-grid"></div>
+        </div>
+    </div>
+
+    <!-- ================= SELL PORTAL (SELL PAGE) ================= -->
+    <div id="page-sell" class="page-section hidden bg-sky-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-6 py-16">
+        <!-- Distinct Luxury Sell Header Header -->
+        <div class="relative bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950 text-white py-16 px-6 text-center overflow-hidden">
+            <div class="max-w-3xl mx-auto space-y-4">
+                <span class="bg-indigo-500/10 text-indigo-400 px-4 py-1.5 rounded-full text-xs font-bold border border-indigo-500/20 inline-flex items-center space-x-1.5">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>Real-Time Property Distribution Engine</span>
+                </span>
+                <h1 class="text-3xl md:text-5xl font-black tracking-tight">List Your Masterpiece</h1>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm font-light">Present your property directly to verified ultra-high-net-worth investors and premium corporate tenants.</p>
+            </div>
+        </div>
+
+        <!-- Clean, Isolated Workspace Section for Form -->
+        <div class="bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100 py-16 px-6">
+            <div class="max-w-3xl mx-auto bg-white border border-slate-100 shadow-xl shadow-slate-200/40 rounded-[2.5rem] p-8 md:p-12 relative">
+                <form id="sell-page-form" onsubmit="handleSellSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Property Name / Title</label>
+                            <input type="text" id="sell-title" required placeholder="e.g., Royal Oak Crest Estate" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Property Segment / Category</label>
+                            <select id="sell-type" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm bg-white cursor-pointer focus:ring-4 focus:ring-blue-100 transition-all">
+                                <option value="Bungalow">Bungalow (Premium Estate)</option>
+                                <option value="Villa">Villa (Exquisite Lot)</option>
+                                <option value="Apartment">Apartment (Standard & Luxury Lease)</option>
+                                <option value="Penthouse">Penthouse (Skyline Tower)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Listing City Location</label>
+                            <input type="text" id="sell-city" required placeholder="e.g., Mumbai, Goa, Delhi" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Total Financial Price (In ₹)</label>
+                            <input type="number" id="sell-price" required placeholder="Rent or Sale price" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Transaction Objective</label>
+                            <select id="sell-intent" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm bg-white cursor-pointer focus:ring-4 focus:ring-blue-100 transition-all">
+                                <option value="rent">To Rent out (Monthly Rent)</option>
+                                <option value="buy">For Immediate Sale (Full Price)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Total Area (Sq.Ft.)</label>
+                            <input type="number" id="sell-sqft" required placeholder="e.g. 3500" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Bedrooms</label>
+                            <input type="number" id="sell-beds" required min="1" placeholder="4" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Bathrooms</label>
+                            <input type="number" id="sell-baths" required min="1" placeholder="3" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Unsplash Image URL / Link</label>
+                        <input type="url" id="sell-image" placeholder="Paste structural photograph URL..." class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold py-4.5 rounded-2xl transition duration-300 shadow-lg shadow-blue-500/20 text-sm">
+                        Publish Listing Live 🚀
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- ================= AGENTS PAGE ================= -->
+    <div id="page-agents" class="page-section hidden min-h-screen bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100">
+    <div class="w-full">
+        <!-- Clean Professional Header (Isolated background) -->
+        <div class="bg-gradient-to-b from-slate-900 to-slate-950 text-white py-16 px-6 text-center relative">
+            <div class="max-w-3xl mx-auto space-y-4">
+                <span class="text-xs text-blue-400 font-bold uppercase tracking-widest bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full inline-flex items-center">
+                    <i class="fa-solid fa-circle-check mr-1.5"></i> Verified Portfolio Managers
+                </span>
+                <h1 class="text-3xl md:text-5xl font-black tracking-tight">Meet Our Advisors</h1>
+                <p class="text-slate-400 max-w-lg mx-auto text-sm leading-relaxed font-light">Direct and secure communication channels with our regional specialists dedicated to your search.</p>
+            </div>
+        </div>
+
+        <!-- Distinct light agent directory workspace -->
+       <div class="bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100 py-16 px-6">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Agent 1 -->
+                <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 text-center shadow-lg shadow-slate-200/50 relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-24 h-24 bg-gradient-to-tr from-blue-100 to-blue-50 rounded-full mx-auto flex items-center justify-center mb-6 border-4 border-white shadow-md">
+                        <i class="fa-solid fa-user-tie text-4xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Rahul Sharma</h3>
+                    <p class="text-xs text-blue-600 font-bold mb-4 tracking-wider uppercase">Bungalows & Villa Specialist</p>
+                    <p class="text-slate-400 text-xs mb-8 px-4 leading-relaxed">Focus areas: Mumbai Seafront Bungalows, High-end Villas in Lonavala and Alibaug.</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="tel:+911234567890" class="flex items-center justify-center space-x-1.5 bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold py-3.5 rounded-2xl transition text-xs border border-slate-200">
+                            <i class="fa-solid fa-phone"></i> <span>Call</span>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=911234567890&text=Hi%20Rahul,%20I'm%20interested%20in%20high-end%20properties." target="_blank" class="flex items-center justify-center space-x-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-3.5 rounded-2xl transition text-xs border border-emerald-100">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+                
+
+                <!-- Agent 2 -->
+                <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 text-center shadow-lg shadow-slate-200/50 relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-24 h-24 bg-gradient-to-tr from-purple-100 to-purple-50 rounded-full mx-auto flex items-center justify-center mb-6 border-4 border-white shadow-md">
+                        <i class="fa-solid fa-user-tie text-4xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Ananya Sen</h3>
+                    <p class="text-xs text-purple-600 font-bold mb-4 tracking-wider uppercase">Penthouse & Apartment Specialist</p>
+                    <p class="text-slate-400 text-xs mb-8 px-4 leading-relaxed">Focus areas: Sky-high penthouses and luxury apartments in Bangalore and Delhi NCR.</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="tel:+919876543210" class="flex items-center justify-center space-x-1.5 bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold py-3.5 rounded-2xl transition text-xs border border-slate-200">
+                            <i class="fa-solid fa-phone"></i> <span>Call</span>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=919876543210&text=Hi%20Ananya,%20I'm%20looking%20for%20a%20luxury%20apartment." target="_blank" class="flex items-center justify-center space-x-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-3.5 rounded-2xl transition text-xs border border-emerald-100">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+                
+
+                <!-- Agent 3 -->
+                <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 text-center shadow-lg shadow-slate-200/50 relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-24 h-24 bg-gradient-to-tr from-amber-100 to-amber-50 rounded-full mx-auto flex items-center justify-center mb-6 border-4 border-white shadow-md">
+                        <i class="fa-solid fa-user-tie text-4xl text-amber-600"></i>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-slate-900">Kabir Mehta</h3>
+                    <p class="text-xs text-amber-600 font-bold mb-4 tracking-wider uppercase">Investment Properties Lead</p>
+                    <p class="text-slate-400 text-xs mb-8 px-4 leading-relaxed">Focus areas: Commercial spaces, portfolio diversification, and historic bungalows in Goa.</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="tel:+911122334455" class="flex items-center justify-center space-x-1.5 bg-slate-50 hover:bg-slate-100 text-slate-800 font-bold py-3.5 rounded-2xl transition text-xs border border-slate-200">
+                            <i class="fa-solid fa-phone"></i> <span>Call</span>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=911122334455&text=Hi%20Kabir,%20I'm%20looking%20to%20invest." target="_blank" class="flex items-center justify-center space-x-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-3.5 rounded-2xl transition text-xs border border-emerald-100">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
+    <!-- ================= ENTERPRISE MODALS ================= -->
+    <!-- QUICK ADD PROPERTY MODAL -->
+    <div id="listing-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-8 border border-slate-100 mx-4 relative">
+            <button onclick="toggleModal(false)" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-2xl font-black text-slate-900 mb-6">Quick Listing Specification</h3>
+            <form id="property-form" onsubmit="handleQuickFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Title</label>
+                    <input type="text" id="form-title" required placeholder="e.g. Skyline Crest Apartments" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Type</label>
+                        <select id="form-type" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm bg-white cursor-pointer">
+                            <option value="Bungalow">Bungalow</option>
+                            <option value="Villa">Villa</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Penthouse">Penthouse</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Price (₹)</label>
+                        <input type="number" id="form-price" required placeholder="Value" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">City Location</label>
+                        <input type="text" id="form-city" required placeholder="e.g., Delhi" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Area (Sq.Ft.)</label>
+                        <input type="number" id="form-sqft" required placeholder="e.g. 2400" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Bedrooms</label>
+                        <input type="number" id="form-beds" required min="1" placeholder="3" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Bathrooms</label>
+                        <input type="number" id="form-baths" required min="1" placeholder="3" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Submission Intent</label>
+                    <select id="form-intent" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm bg-white cursor-pointer">
+                        <option value="rent">Add to Rental Listings</option>
+                        <option value="buy">Add to Sale Database</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold py-4 rounded-xl transition mt-4">
+                    Register Property Active 🎉
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SIGN IN MODAL -->
+    <div id="signin-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-8 border border-slate-100 mx-4 relative">
+            <button onclick="toggleSignInModal(false)" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-2xl font-black text-slate-900 mb-2">Welcome back</h3>
+            <p class="text-sm text-slate-500 mb-6 font-normal">Authenticating premium access to Nestly services.</p>
+            <form onsubmit="handleSignInSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Email ID</label>
+                    <input type="email" required placeholder="name@domain.com" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Password</label>
+                    <input type="password" required placeholder="••••••••" class="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 text-sm">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold py-3.5 rounded-xl transition mt-2">
+                    Proceed to App Access 🔑
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT SYSTEM ENGINE -->
+    <script>
+        // High-Quality Default Datasets (Rentals & Sales separately)
+        const DEFAULT_RENTALS = [
+            { id: 101, title: "Grand Seafront Bungalow", type: "Bungalow", price: 280000, city: "Mumbai", beds: 5, baths: 5, sqft: 4500, image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80", rating: 4.97, status: "Premium" },
+            { id: 102, title: "Ultra Skyline Penthouse", type: "Penthouse", price: 190000, city: "Mumbai", beds: 3, baths: 3, sqft: 3200, image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", rating: 4.95, status: "Verified" },
+            { id: 103, title: "Minimalist Modern Studio", type: "Apartment", price: 65000, city: "Bangalore", beds: 1, baths: 1, sqft: 950, image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80", rating: 4.75, status: "Verified" },
+            { id: 104, title: "The Royal Oak Villa", type: "Villa", price: 240000, city: "Bangalore", beds: 4, baths: 4, sqft: 4000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", rating: 4.88, status: "Newly Listed" }
+        ];
+
+        const DEFAULT_SALES = [
+            { id: 201, title: "Sunset Horizon Row Bungalow", type: "Bungalow", price: 95000000, city: "Goa", beds: 4, baths: 4, sqft: 4200, image: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=800&q=80", rating: 4.91, status: "Hot Deal" },
+            { id: 202, title: "Mediterranean Beachfront Villa", type: "Villa", price: 142000000, city: "Goa", beds: 5, baths: 6, sqft: 5600, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", rating: 4.98, status: "Heritage Asset" },
+            { id: 203, title: "Regal Heights Sky Penthouse", type: "Penthouse", price: 68000000, city: "Delhi NCR", beds: 4, baths: 4, sqft: 3800, image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80", rating: 4.89, status: "Immediate Move-in" }
+        ];
+
+        let rentals = JSON.parse(localStorage.getItem("nestly_premium_rentals")) || DEFAULT_RENTALS;
+        let sales = JSON.parse(localStorage.getItem("nestly_premium_sales")) || DEFAULT_SALES;
+
+        // Current Active Sub-Categories selected
+        let activeRentCategory = "All";
+        let activeBuyCategory = "All";
+
+        // Filtering state
+        let maxRentPrice = 300000;
+        let rentSearchVal = "";
+        let maxBuyPrice = 15.0; // In Crores
+        let buySearchVal = "";
+
+        // MULTI-PAGE VIEW SWAPPER
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-section').forEach(page => page.classList.add('hidden'));
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+
+            const menuIds = ['rent', 'buy', 'sell', 'agents'];
+            menuIds.forEach(mId => {
+                const navBtn = document.getElementById(`nav-${mId}`);
+                if(mId === pageId) {
+                    navBtn.className = "text-blue-600 font-bold transition flex items-center space-x-1.5";
+                } else {
+                    navBtn.className = "text-slate-600 hover:text-slate-900 font-semibold transition flex items-center space-x-1.5";
+                }
+            });
+
+            if(pageId === 'rent') renderRentals();
+            if(pageId === 'buy') renderSales();
+        }
+
+        // RENDER RENTAL DATABASE
+        function renderRentals() {
+            const grid = document.getElementById("rent-grid");
+            grid.innerHTML = "";
+            const filtered = rentals.filter(r => {
+                const matchesCategory = activeRentCategory === "All" || r.type === activeRentCategory;
+                const matchesPrice = r.price <= maxRentPrice;
+                const matchesSearch = r.city.toLowerCase().includes(rentSearchVal.toLowerCase()) || 
+                                      r.title.toLowerCase().includes(rentSearchVal.toLowerCase());
+                return matchesCategory && matchesPrice && matchesSearch;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 bg-white rounded-[2rem] border border-slate-100 p-8 shadow-sm">
+                        <i class="fa-solid fa-hotel text-4xl text-slate-300 mb-3"></i>
+                        <p class="text-slate-500 font-medium">No luxury rentals match this query setup.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(r => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <button onclick="deleteRent(${r.id})" class="absolute top-5 right-5 z-10 bg-white/90 hover:bg-red-50 text-slate-500 hover:text-red-600 w-9 h-9 rounded-full flex items-center justify-center shadow-sm transition">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        <div class="h-60 overflow-hidden relative">
+                            <img src="${r.image}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-5 left-5 bg-blue-600 text-white text-[10px] uppercase font-black px-3.5 py-1.5 rounded-full tracking-wider shadow-sm">
+                                ${r.status || 'Verified'}
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">${r.type}</span>
+                                    <span class="text-xs font-bold text-amber-500"><i class="fa-solid fa-star mr-1"></i>${r.rating.toFixed(1)}</span>
+                                </div>
+                                <h3 class="text-lg font-bold mt-1.5 text-slate-900 group-hover:text-blue-600 transition truncate">${r.title}</h3>
+                                <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> ${r.city}, India</p>
+                            </div>
+                            <div class="flex items-center space-x-4 text-xs font-bold text-slate-500 pt-2 border-t border-slate-50">
+                                <span class="flex items-center"><i class="fa-solid fa-bed mr-1.5 text-slate-300"></i>${r.beds} BHK</span>
+                                <span class="flex items-center"><i class="fa-solid fa-bath mr-1.5 text-slate-300"></i>${r.baths} Bath</span>
+                                <span class="flex items-center"><i class="fa-solid fa-arrows-up-to-line mr-1.5 text-slate-300"></i>${r.sqft || 2400} Sq.Ft.</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4">
+                                <span class="text-xl font-black text-slate-950">
+                                    ₹${r.price.toLocaleString()} <span class="text-xs text-slate-400 font-semibold">/month</span>
+                                </span>
+                                <button onclick="bookVisit('${r.title}', '${r.city}')" class="bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all">Rent Unit</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // RENDER SALES DATABASE
+        function renderSales() {
+            const grid = document.getElementById("buy-grid");
+            grid.innerHTML = "";
+            const filtered = sales.filter(s => {
+                const matchesCategory = activeBuyCategory === "All" || s.type === activeBuyCategory;
+                const matchesPrice = (s.price / 10000000) <= maxBuyPrice;
+                const matchesSearch = s.city.toLowerCase().includes(buySearchVal.toLowerCase()) || 
+                                      s.title.toLowerCase().includes(buySearchVal.toLowerCase());
+                return matchesCategory && matchesPrice && matchesSearch;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 bg-white rounded-[2rem] border border-slate-100 p-8 shadow-sm">
+                        <i class="fa-solid fa-monument text-4xl text-slate-300 mb-3"></i>
+                        <p class="text-slate-500 font-medium">No real estate assets fit these configuration scopes.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(s => {
+                const formattedCrores = (s.price / 10000000).toFixed(2);
+                grid.innerHTML += `
+                    <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <button onclick="deleteSale(${s.id})" class="absolute top-5 right-5 z-10 bg-white/90 hover:bg-red-50 text-slate-500 hover:text-red-600 w-9 h-9 rounded-full flex items-center justify-center shadow-sm transition">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        <div class="h-60 overflow-hidden relative">
+                            <img src="${s.image}" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-5 left-5 bg-emerald-600 text-white text-[10px] uppercase font-black px-3.5 py-1.5 rounded-full tracking-wider shadow-sm">
+                                ${s.status || 'Acquisition'}
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">${s.type}</span>
+                                    <span class="text-xs font-bold text-amber-500"><i class="fa-solid fa-star mr-1"></i>${s.rating.toFixed(1)}</span>
+                                </div>
+                                <h3 class="text-lg font-bold mt-1.5 text-slate-900 group-hover:text-emerald-600 transition truncate">${s.title}</h3>
+                                <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> ${s.city}, India</p>
+                            </div>
+                            <div class="flex items-center space-x-4 text-xs font-bold text-slate-500 pt-2 border-t border-slate-50">
+                                <span class="flex items-center"><i class="fa-solid fa-bed mr-1.5 text-slate-300"></i>${s.beds} BHK</span>
+                                <span class="flex items-center"><i class="fa-solid fa-bath mr-1.5 text-slate-300"></i>${s.baths} Bath</span>
+                                <span class="flex items-center"><i class="fa-solid fa-arrows-up-to-line mr-1.5 text-slate-300"></i>${s.sqft || 3500} Sq.Ft.</span>
+                            </div>
+                            <div class="flex justify-between items-center pt-4">
+                                <span class="text-xl font-black text-slate-900">
+                                    ₹${formattedCrores} <span class="text-xs text-slate-400 font-semibold">Crores</span>
+                                </span>
+                                <button onclick="buyOffer('${s.title}', '${s.city}')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all">Acquire</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // WhatsApp Integrations
+        function bookVisit(prop, city) {
+            const name = prompt("Please provide your name to register view request:");
+            if(!name) return;
+            const msg = `Good day, My name is ${name}. I wish to request a physical viewing visit for the rental listing "${prop}" in ${city}. Please coordinate timings.`;
+            window.open(`https://api.whatsapp.com/send?phone=911234567890&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function buyOffer(prop, city) {
+            const name = prompt("Please specify your name for the investment file:");
+            if(!name) return;
+            const msg = `Good day, I am ${name}. I would like to schedule a virtual tour and inspect paperwork details regarding "${prop}" situated in ${city}.`;
+            window.open(`https://api.whatsapp.com/send?phone=911234567890&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Subcategory Filter logic (Rent)
+        function filterRentCategory(type) {
+            activeRentCategory = type;
+            const subTypes = ["All", "Bungalow", "Villa", "Apartment", "Penthouse"];
+            subTypes.forEach(curr => {
+                const button = document.getElementById(`btn-rent-${curr}`);
+                if(!button) return;
+                if(curr === type) {
+                    button.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-blue-600 text-white shadow-sm";
+                } else {
+                    button.className = "px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all";
+                }
+            });
+            renderRentals();
+        }
+
+        // Subcategory Filter logic (Buy)
+        function filterBuyCategory(type) {
+            activeBuyCategory = type;
+            const subTypes = ["All", "Bungalow", "Villa", "Apartment", "Penthouse"];
+            subTypes.forEach(curr => {
+                const button = document.getElementById(`btn-buy-${curr}`);
+                if(!button) return;
+                if(curr === type) {
+                    button.className = "px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-emerald-600 text-white shadow-sm";
+                } else {
+                    button.className = "px-5 py-2.5 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 transition-all";
+                }
+            });
+            renderSales();
+        }
+
+        // Form operations
+        function handleSellSubmit(event) {
+            event.preventDefault();
+            const title = document.getElementById("sell-title").value;
+            const type = document.getElementById("sell-type").value;
+            const price = Number(document.getElementById("sell-price").value);
+            const city = document.getElementById("sell-city").value;
+            const beds = Number(document.getElementById("sell-beds").value);
+            const baths = Number(document.getElementById("sell-baths").value);
+            const sqft = Number(document.getElementById("sell-sqft").value);
+            const intent = document.getElementById("sell-intent").value;
+            let img = document.getElementById("sell-image").value;
+
+            if(!img) {
+                img = (type === "Bungalow" || type === "Villa") 
+                    ? "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=800&q=80"
+                    : "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80";
+            }
+
+            const newProperty = { id: Date.now(), title, type, price, city, beds, baths, sqft, image: img, rating: 5.0, status: "Newly Verified" };
+
+            if(intent === "buy") {
+                sales.unshift(newProperty);
+                localStorage.setItem("nestly_premium_sales", JSON.stringify(sales));
+                alert("Listed Successfully on our Direct Ownership Board! 🎉");
+                navigateTo("buy");
+            } else {
+                rentals.unshift(newProperty);
+                localStorage.setItem("nestly_premium_rentals", JSON.stringify(rentals));
+                alert("Listed Successfully on our Premium Rentals Board! 🎉");
+                navigateTo("rent");
+            }
+
+            document.getElementById("sell-page-form").reset();
+        }
+
+        function handleQuickFormSubmit(event) {
+            event.preventDefault();
+            const title = document.getElementById("form-title").value;
+            const type = document.getElementById("form-type").value;
+            const price = Number(document.getElementById("form-price").value);
+            const city = document.getElementById("form-city").value;
+            const beds = Number(document.getElementById("form-beds").value);
+            const baths = Number(document.getElementById("form-baths").value);
+            const sqft = Number(document.getElementById("form-sqft").value);
+            const intent = document.getElementById("form-intent").value;
+            const img = "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80";
+
+            const newProperty = { id: Date.now(), title, type, price, city, beds, baths, sqft, image: img, rating: 5.0, status: "Agent Listed" };
+
+            if(intent === "buy") {
+                sales.unshift(newProperty);
+                localStorage.setItem("nestly_premium_sales", JSON.stringify(sales));
+                navigateTo("buy");
+            } else {
+                rentals.unshift(newProperty);
+                localStorage.setItem("nestly_premium_rentals", JSON.stringify(rentals));
+                navigateTo("rent");
+            }
+
+            toggleModal(false);
+            document.getElementById("property-form").reset();
+            alert("Success! Your listing has been registered directly on the active grid.");
+        }
+
+        // Delete Handlers
+        function deleteRent(id) {
+            if(confirm("Confirm deletion of this rental database entry?")) {
+                rentals = rentals.filter(r => r.id !== id);
+                localStorage.setItem("nestly_premium_rentals", JSON.stringify(rentals));
+                renderRentals();
+            }
+        }
+
+        function deleteSale(id) {
+            if(confirm("Confirm deletion of this sale database entry?")) {
+                sales = sales.filter(s => s.id !== id);
+                localStorage.setItem("nestly_premium_sales", JSON.stringify(sales));
+                renderSales();
+            }
+        }
+
+        // Interactive inputs
+        function filterRentPrice(val) {
+            maxRentPrice = Number(val);
+            document.getElementById("rent-price-display").innerText = "₹" + maxRentPrice.toLocaleString();
+            renderRentals();
+        }
+        function filterRentSearch(val) {
+            rentSearchVal = val;
+            renderRentals();
+        }
+        function filterBuyPrice(val) {
+            maxBuyPrice = Number(val);
+            document.getElementById("buy-price-display").innerText = `₹${maxBuyPrice.toFixed(1)} Crores`;
+            renderSales();
+        }
+        function filterBuySearch(val) {
+            buySearchVal = val;
+            renderSales();
+        }
+
+        // Modal triggers
+        function toggleModal(show) {
+            document.getElementById("listing-modal").classList.toggle("hidden", !show);
+        }
+        function toggleSignInModal(show) {
+            document.getElementById("signin-modal").classList.toggle("hidden", !show);
+        }
+        function handleSignInSubmit(event) {
+            event.preventDefault();
+            alert("Authentication complete! Welcome back to the admin desk.");
+            toggleSignInModal(false);
+        }
+
+        // Run Initialized render
+        renderRentals();
+    </script>
+</body>
+</html>
