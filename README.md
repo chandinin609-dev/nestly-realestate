@@ -3,9 +3,8 @@
 > A modern, user-friendly web interface designed for browsing and managing house rentals.
 
 ## 📱 Live Demo Walkthrough
-<video src="rr.wmv" controls="controls" style="max-width: 100%;">
-  Your browser does not support the video tag.
-</video>
+
+https://github.com/user-attachments/assets/7514ab0c-e5ea-4584-8d14-8511976c47bd
 
 ## ✨ Features
 * **Clean User Interface:** Built with structured, semantic HTML elements for optimal readability.
