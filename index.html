@@ -666,8 +666,6 @@
                 renderSales();
             }
         }
-
-        
         function filterRentPrice(val) {
             maxRentPrice = Number(val);
             document.getElementById("rent-price-display").innerText = "₹" + maxRentPrice.toLocaleString();
@@ -686,8 +684,6 @@
             buySearchVal = val;
             renderSales();
         }
-
-      
         function toggleModal(show) {
             document.getElementById("listing-modal").classList.toggle("hidden", !show);
         }
