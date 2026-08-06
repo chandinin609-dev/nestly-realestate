@@ -185,7 +185,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Total Area (Sq.Ft.)</label>
@@ -200,7 +199,6 @@
                             <input type="number" id="sell-baths" required min="1" placeholder="3" class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
                         </div>
                     </div>
-
                     <div>
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Unsplash Image URL / Link</label>
                         <input type="url" id="sell-image" placeholder="Paste structural photograph URL..." class="w-full p-4 border border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 text-sm focus:ring-4 focus:ring-blue-100 transition-all">
@@ -344,8 +342,6 @@
             </form>
         </div>
     </div>
-
-    
     <div id="signin-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
         <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl p-8 border border-slate-100 mx-4 relative">
             <button onclick="toggleSignInModal(false)" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-lg">
@@ -414,8 +410,6 @@
             if(pageId === 'rent') renderRentals();
             if(pageId === 'buy') renderSales();
         }
-
-        
         function renderRentals() {
             const grid = document.getElementById("rent-grid");
             grid.innerHTML = "";
@@ -436,7 +430,6 @@
                 `;
                 return;
             }
-
             filtered.forEach(r => {
                 grid.innerHTML += `
                     <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-sm relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
@@ -474,8 +467,6 @@
                 `;
             });
         }
-
-       
         function renderSales() {
             const grid = document.getElementById("buy-grid");
             grid.innerHTML = "";
@@ -535,8 +526,6 @@
                 `;
             });
         }
-
-        
         function bookVisit(prop, city) {
             const name = prompt("Please provide your name to register view request:");
             if(!name) return;
@@ -566,8 +555,6 @@
             });
             renderRentals();
         }
-
-        
         function filterBuyCategory(type) {
             activeBuyCategory = type;
             const subTypes = ["All", "Bungalow", "Villa", "Apartment", "Penthouse"];
@@ -582,8 +569,6 @@
             });
             renderSales();
         }
-
-        
         function handleSellSubmit(event) {
             event.preventDefault();
             const title = document.getElementById("sell-title").value;
@@ -693,7 +678,6 @@
             alert("Authentication complete! Welcome back to the admin desk.");
             toggleSignInModal(false);
         }
-
         renderRentals();
     </script>
 </body>
