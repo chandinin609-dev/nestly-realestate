@@ -539,8 +539,6 @@
             const msg = `Good day, I am ${name}. I would like to schedule a virtual tour and inspect paperwork details regarding "${prop}" situated in ${city}.`;
             window.open(`https://api.whatsapp.com/send?phone=911234567890&text=${encodeURIComponent(msg)}`, '_blank');
         }
-
-        
         function filterRentCategory(type) {
             activeRentCategory = type;
             const subTypes = ["All", "Bungalow", "Villa", "Apartment", "Penthouse"];
@@ -641,7 +639,6 @@
                 renderRentals();
             }
         }
-
         function deleteSale(id) {
             if(confirm("Confirm deletion of this sale database entry?")) {
                 sales = sales.filter(s => s.id !== id);
