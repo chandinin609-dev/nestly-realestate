@@ -241,7 +241,6 @@
                         </a>
                     </div>
                 </div>
-                
                 <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 text-center shadow-lg shadow-slate-200/50 relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="w-24 h-24 bg-gradient-to-tr from-purple-100 to-purple-50 rounded-full mx-auto flex items-center justify-center mb-6 border-4 border-white shadow-md">
                         <i class="fa-solid fa-user-tie text-4xl text-purple-600"></i>
@@ -258,12 +257,10 @@
                         </a>
                     </div>
                 </div>
-            
                 <div class="bg-white border border-slate-100 rounded-[2.5rem] p-8 text-center shadow-lg shadow-slate-200/50 relative group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="w-24 h-24 bg-gradient-to-tr from-amber-100 to-amber-50 rounded-full mx-auto flex items-center justify-center mb-6 border-4 border-white shadow-md">
                         <i class="fa-solid fa-user-tie text-4xl text-amber-600"></i>
                     </div>
-                    
                     <h3 class="text-xl font-bold text-slate-900">Kabir Mehta</h3>
                     <p class="text-xs text-amber-600 font-bold mb-4 tracking-wider uppercase">Investment Properties Lead</p>
                     <p class="text-slate-400 text-xs mb-8 px-4 leading-relaxed">Focus areas: Commercial spaces, portfolio diversification, and historic bungalows in Goa.</p>
@@ -337,7 +334,6 @@
                     </select>
                 </div>
                 <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold py-4 rounded-xl transition mt-4">
-                   
                 </button>
             </form>
         </div>
@@ -382,17 +378,14 @@
         let rentals = JSON.parse(localStorage.getItem("nestly_premium_rentals")) || DEFAULT_RENTALS;
         let sales = JSON.parse(localStorage.getItem("nestly_premium_sales")) || DEFAULT_SALES;
 
-       
         let activeRentCategory = "All";
         let activeBuyCategory = "All";
-
-       
+        
         let maxRentPrice = 300000;
         let rentSearchVal = "";
         let maxBuyPrice = 15.0; // In Crores
         let buySearchVal = "";
 
-       
         function navigateTo(pageId) {
             document.querySelectorAll('.page-section').forEach(page => page.classList.add('hidden'));
             document.getElementById(`page-${pageId}`).classList.remove('hidden');
