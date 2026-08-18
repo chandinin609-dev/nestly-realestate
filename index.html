@@ -413,7 +413,6 @@
                                       r.title.toLowerCase().includes(rentSearchVal.toLowerCase());
                 return matchesCategory && matchesPrice && matchesSearch;
             });
-
             if(filtered.length === 0) {
                 grid.innerHTML = `
                     <div class="col-span-full text-center py-16 bg-white rounded-[2rem] border border-slate-100 p-8 shadow-sm">
