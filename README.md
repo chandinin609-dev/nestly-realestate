@@ -1,24 +1,63 @@
 # 🏠 Nestly Realestate
 
-> A modern, user-friendly web interface designed for browsing and managing house rentals.
+### A Modern and Responsive House Rental Web Interface
 
-## 📱 Live Demo Walkthrough
+Nestly Realestate is a clean and user-friendly web interface designed to present house rental listings in an organized and visually appealing way.
+
+The project focuses on creating a responsive rental browsing experience using **HTML5 and CSS3**, with a simple and maintainable project structure.
+
+---
+
+## 🎥 Project Demo
+
+▶️ **Live Demo Walkthrough**
 
 https://github.com/user-attachments/assets/7514ab0c-e5ea-4584-8d14-8511976c47bd
 
+The demo walkthrough showcases the user interface and overall house rental browsing experience.
+
+---
+
 ## ✨ Features
-* **Clean User Interface:** Built with structured, semantic HTML elements for optimal readability.
-* **Responsive Layout:** Designed to look organized across different standard browser windows.
-* **Professional Structure:** Clean separation of project assets and source code files.
+
+- 🏠 **House Rental Interface**
+  - Clean presentation of rental properties
+  - Organized property information
+
+- 🎨 **Clean User Interface**
+  - Structured and semantic HTML
+  - Simple and professional visual design
+
+- 📱 **Responsive Layout**
+  - Designed to adapt to different browser window sizes
+  - Easy-to-use navigation and content layout
+
+- 🧩 **Organized Project Structure**
+  - Clear separation of HTML and supporting assets
+  - Simple and easy-to-understand codebase
+
+---
 
 ## 🛠️ Tech Stack
-* **Frontend:** HTML5, CSS3
-* **Tools:** Git, GitHub
 
-## 🚀 How to Run the Project Locally
+### Frontend
 
-To open and view this project on your machine, follow these steps:
+- HTML5
+- CSS3
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/chandinin609-dev/nestly-realestate.git](https://github.com/chandinin609-dev/nestly-realestate.git)
+### Tools
+
+- Git
+- GitHub
+- VS Code / Web Development Environment
+
+---
+
+## 📂 Project Structure
+
+```text
+nestly-realestate/
+│
+├── index.html
+├── README.md
+└── rr.wmv
