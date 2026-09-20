@@ -17,7 +17,6 @@ https://github.com/user-attachments/assets/7514ab0c-e5ea-4584-8d14-8511976c47bd
 The demo walkthrough showcases the user interface and overall house rental browsing experience.
 
 ---
-
 ## ✨ Features
 
 - 🏠 **House Rental Interface**
