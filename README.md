@@ -5,9 +5,7 @@
 Nestly Realestate is a clean and user-friendly web interface designed to present house rental listings in an organized and visually appealing way.
 
 The project focuses on creating a responsive rental browsing experience using **HTML5 and CSS3**, with a simple and maintainable project structure.
-
 ---
-
 ## 🎥 Project Demo
 
 ▶️ **Live Demo Walkthrough**
